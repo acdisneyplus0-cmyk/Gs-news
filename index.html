@@ -446,7 +446,7 @@
   async function loadNews(){
     setStatus('Caricamento in corso...');
     try {
-      const resp=await fetch('/.netlify/functions/get-news');
+      const resp=await fetch('/news.json?t='+Date.now());
       if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data=await resp.json();
       if(data.error) throw new Error(data.error);
