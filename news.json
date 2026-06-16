@@ -1,26 +1,71 @@
 {
-  "lastUpdate": null,
-  "ticker": ["Benvenuto su GS News", "Notizie aggiornate ogni ora automaticamente"],
+  "ticker": [
+    "Accordo Usa-Iran: firma venerdì a Lucerna",
+    "Milan: Ruben Amorim nuovo allenatore",
+    "FTSE Italia All Share: +1,07%",
+    "Francia-Senegal stasera ai Mondiali 2026",
+    "Caritas: record assistiti in Italia"
+  ],
   "hero": {
-    "emoji": "📰",
-    "categoria": "politica",
-    "titolo": "Le notizie del giorno in caricamento...",
-    "sommario": "Il sistema sta recuperando le ultime notizie. Torna tra qualche minuto per leggere gli aggiornamenti del giorno.",
-    "ora": "Adesso"
+    "emoji": "🕊️",
+    "categoria": "esteri",
+    "titolo": "Accordo provvisorio Usa-Iran raggiunto",
+    "sommario": "Gli Stati Uniti e l'Iran hanno raggiunto un accordo provvisorio annunciato a Evian. La firma dell'accordo è fissata per venerdì a Lucerna. Seguiranno 60 giorni di negoziati su questioni critiche, tra cui il programma nucleare iraniano.",
+    "ora": "fa 8 ore"
   },
   "evidenza": [
-    {"emoji": "⏳", "categoria": "esteri", "titolo": "Caricamento notizie internazionali...", "ora": "Presto"},
-    {"emoji": "⏳", "categoria": "economia", "titolo": "Caricamento notizie economiche...", "ora": "Presto"},
-    {"emoji": "⏳", "categoria": "cronaca", "titolo": "Caricamento cronaca...", "ora": "Presto"}
+    {
+      "emoji": "⚽",
+      "categoria": "sport",
+      "titolo": "Mondiali 2026: esordio di Francia e Argentina",
+      "ora": "stasera"
+    },
+    {
+      "emoji": "🇮🇹",
+      "categoria": "politica",
+      "titolo": "G7 a Evian: focus sull'Ucraina e Medio Oriente",
+      "ora": "fa 6 ore"
+    },
+    {
+      "emoji": "⚠️",
+      "categoria": "cronaca",
+      "titolo": "Caritas: 282mila assistiti in Italia, +48% in dieci anni",
+      "ora": "fa 6 ore"
+    }
   ],
   "economia": [
-    {"emoji": "📈", "titolo": "Aggiornamento mercati in corso...", "ora": "Presto"},
-    {"emoji": "💶", "titolo": "Dati economici in caricamento...", "ora": "Presto"},
-    {"emoji": "🏦", "titolo": "Notizie finanziarie in arrivo...", "ora": "Presto"}
+    {
+      "emoji": "📈",
+      "titolo": "Borsa italiana: FTSE Italia All Share guadagna 1,07%",
+      "ora": "chiusura seduta"
+    },
+    {
+      "emoji": "🏦",
+      "titolo": "UniCredit e IntesaSanpaolo positive: +4,17% e +2,91%",
+      "ora": "fine seduta"
+    },
+    {
+      "emoji": "💰",
+      "titolo": "Spread Btp-Bund stabile a 72 punti base",
+      "ora": "apertura 16 giugno"
+    }
   ],
   "sport_tech": [
-    {"emoji": "⚽", "titolo": "Risultati sportivi in caricamento...", "ora": "Presto"},
-    {"emoji": "💻", "titolo": "Ultime notizie tech in arrivo...", "ora": "Presto"},
-    {"emoji": "🏀", "titolo": "Sport internazionale in caricamento...", "ora": "Presto"}
-  ]
+    {
+      "emoji": "⚽",
+      "titolo": "Francia affronta Senegal ore 21 su Rai 1 ai Mondiali",
+      "ora": "stasera"
+    },
+    {
+      "emoji": "🔴",
+      "titolo": "Milan: ufficiale Ruben Amorim nuovo allenatore",
+      "ora": "fa 34 minuti"
+    },
+    {
+      "emoji": "🎮",
+      "titolo": "Roma: evento Next Sport Generation con e-sports e innovazione",
+      "ora": "ore 18:00"
+    }
+  ],
+  "lastUpdate": "2026-06-16T21:51:15.059Z"
 }
