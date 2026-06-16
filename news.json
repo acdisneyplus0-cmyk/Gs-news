@@ -1,0 +1,26 @@
+{
+  "lastUpdate": null,
+  "ticker": ["Benvenuto su GS News", "Notizie aggiornate ogni ora automaticamente"],
+  "hero": {
+    "emoji": "📰",
+    "categoria": "politica",
+    "titolo": "Le notizie del giorno in caricamento...",
+    "sommario": "Il sistema sta recuperando le ultime notizie. Torna tra qualche minuto per leggere gli aggiornamenti del giorno.",
+    "ora": "Adesso"
+  },
+  "evidenza": [
+    {"emoji": "⏳", "categoria": "esteri", "titolo": "Caricamento notizie internazionali...", "ora": "Presto"},
+    {"emoji": "⏳", "categoria": "economia", "titolo": "Caricamento notizie economiche...", "ora": "Presto"},
+    {"emoji": "⏳", "categoria": "cronaca", "titolo": "Caricamento cronaca...", "ora": "Presto"}
+  ],
+  "economia": [
+    {"emoji": "📈", "titolo": "Aggiornamento mercati in corso...", "ora": "Presto"},
+    {"emoji": "💶", "titolo": "Dati economici in caricamento...", "ora": "Presto"},
+    {"emoji": "🏦", "titolo": "Notizie finanziarie in arrivo...", "ora": "Presto"}
+  ],
+  "sport_tech": [
+    {"emoji": "⚽", "titolo": "Risultati sportivi in caricamento...", "ora": "Presto"},
+    {"emoji": "💻", "titolo": "Ultime notizie tech in arrivo...", "ora": "Presto"},
+    {"emoji": "🏀", "titolo": "Sport internazionale in caricamento...", "ora": "Presto"}
+  ]
+}

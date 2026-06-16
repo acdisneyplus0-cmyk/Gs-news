@@ -1,0 +1,7 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[[scheduled_functions]]
+  name = "update-news"
+  schedule = "0 * * * *"

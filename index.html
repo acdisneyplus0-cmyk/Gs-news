@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GS News - Notizie in Tempo Reale</title>
+<meta name="description" content="GS News - Le notizie più importanti del giorno aggiornate ogni 30 minuti con intelligenza artificiale">
+<meta property="og:title" content="GS News - Notizie in Tempo Reale">
+<meta property="og:description" content="Politica, economia, sport, tech e molto altro. Aggiornamento automatico ogni 30 minuti.">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #F4F6F9; color: #1A1A2E; min-height: 100vh; }
+
+  /* TICKER */
+  .ticker-bar { background: #C0392B; color: #fff; padding: 7px 0; overflow: hidden; white-space: nowrap; }
+  .ticker-label { display: inline-block; background: #96281B; color: #fff; font-family: Arial, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 2px; padding: 0 16px; margin-right: 20px; text-transform: uppercase; }
+  .ticker-content { display: inline-block; animation: ticker 55s linear infinite; font-family: Arial, sans-serif; font-size: 13px; font-weight: 500; }
+  @keyframes ticker { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+
+  /* HEADER */
+  header { background: #fff; border-bottom: 3px solid #C0392B; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .logo { font-family: 'Georgia', serif; font-size: 42px; font-weight: 700; letter-spacing: -1px; }
+  .logo .gs { color: #E67E22; }
+  .logo .news { color: #1A1A2E; }
+  .header-right { text-align: right; font-family: Arial, sans-serif; }
+  .header-date-big { font-size: 13px; font-weight: 700; color: #1A1A2E; }
+  .header-time { font-size: 13px; color: #7A8299; margin-top: 3px; }
+  .header-tagline { font-size: 10px; color: #AAB0C0; margin-top: 5px; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* NAV */
+  nav { background: #fff; border-bottom: 1px solid #E2E6EF; padding: 0 32px; display: flex; overflow-x: auto; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 6px rgba(0,0,0,0.04); scrollbar-width: none; }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn { background: none; border: none; color: #7A8299; font-family: Arial, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 14px 18px; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  .nav-btn:hover { color: #1A1A2E; }
+  .nav-btn.active { color: #E67E22; border-bottom-color: #E67E22; }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 24px 32px; }
+
+  /* ADS */
+  .ad-banner { background: #fff; border: 1px solid #E2E6EF; border-radius: 8px; text-align: center; padding: 18px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .ad-label { font-family: Arial, sans-serif; font-size: 9px; color: #AAB0C0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; }
+  .ad-content { font-family: Arial, sans-serif; font-size: 20px; font-weight: 700; color: #1A1A2E; margin-bottom: 4px; }
+  .ad-sub { font-family: Arial, sans-serif; font-size: 13px; color: #7A8299; }
+  .ad-cta { display: inline-block; margin-top: 10px; background: #E67E22; color: #fff; font-family: Arial, sans-serif; font-size: 13px; font-weight: 700; padding: 7px 22px; border-radius: 4px; cursor: pointer; border: none; text-decoration: none; transition: background 0.2s; }
+  .ad-cta:hover { background: #CA6F1E; }
+
+  /* STATUS */
+  .refresh-bar { background: #fff; border: 1px solid #E2E6EF; border-radius: 6px; padding: 9px 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .refresh-text { font-family: Arial, sans-serif; font-size: 13px; color: #7A8299; display: flex; align-items: center; gap: 8px; }
+  .live-dot { display: inline-block; width: 8px; height: 8px; background: #C0392B; border-radius: 50%; animation: pulse 1s ease-in-out infinite; flex-shrink: 0; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+  .refresh-btn { background: #E67E22; border: none; color: #fff; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+  .refresh-btn:hover { background: #CA6F1E; }
+
+  /* SECTION HEADING */
+  .section-heading { font-family: Arial, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #1A1A2E; border-left: 4px solid #E67E22; padding-left: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+  .swipe-hint { font-size: 11px; color: #AAB0C0; font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+  /* ── SWIPE CAROUSEL ── */
+  .swipe-wrapper { position: relative; margin-bottom: 32px; }
+  .swipe-track-outer { overflow: hidden; border-radius: 12px; }
+  .swipe-track { display: flex; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; cursor: grab; user-select: none; }
+  .swipe-track.dragging { transition: none; cursor: grabbing; }
+
+  .swipe-card {
+    flex: 0 0 100%;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    min-height: 340px;
+  }
+  .swipe-card-left { padding: 32px; display: flex; flex-direction: column; justify-content: center; }
+  .swipe-card-emoji { font-size: 80px; background: #F4F6F9; display: flex; align-items: center; justify-content: center; }
+
+  .cat-badge { font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; display: inline-block; margin-bottom: 14px; }
+  .cat-politica{background:#EBF0FF;color:#2E5BBA} .cat-sport{background:#E8F8EE;color:#1A7A3C}
+  .cat-economia{background:#FFF8E1;color:#B8860B} .cat-esteri{background:#FEE8E6;color:#C0392B}
+  .cat-tech{background:#F0EEFF;color:#6B3FA0} .cat-cultura{background:#FEE6F4;color:#A0306B}
+  .cat-cronaca{background:#FFF0E6;color:#C05A00}
+
+  .swipe-title { font-family: 'Georgia', serif; font-size: 24px; font-weight: 700; color: #1A1A2E; line-height: 1.35; margin-bottom: 14px; }
+  .swipe-summary { font-family: Arial, sans-serif; font-size: 14px; color: #5A6170; line-height: 1.7; margin-bottom: 18px; flex: 1; }
+  .swipe-meta { font-family: Arial, sans-serif; font-size: 12px; color: #AAB0C0; }
+  .swipe-meta span { color: #E67E22; font-weight: 600; }
+  .read-more-btn { display: inline-block; margin-top: 14px; background: #1A1A2E; color: #fff; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; padding: 8px 20px; border-radius: 4px; border: none; cursor: pointer; transition: background 0.2s; align-self: flex-start; }
+  .read-more-btn:hover { background: #E67E22; }
+
+  /* DOTS */
+  .swipe-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #DDE0E8; border: none; cursor: pointer; transition: all 0.2s; padding: 0; }
+  .dot.active { background: #E67E22; width: 22px; border-radius: 4px; }
+
+  /* ARROWS */
+  .swipe-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: #fff; border: 1px solid #E2E6EF; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 10; transition: all 0.2s; color: #1A1A2E; }
+  .swipe-arrow:hover { background: #E67E22; color: #fff; border-color: #E67E22; }
+  .swipe-prev { left: -20px; }
+  .swipe-next { right: -20px; }
+
+  /* SMALL SWIPE (economia / sport-tech) */
+  .mini-swipe-wrapper { position: relative; margin-bottom: 32px; }
+  .mini-swipe-outer { overflow: hidden; }
+  .mini-swipe-track { display: flex; gap: 18px; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; cursor: grab; user-select: none; }
+  .mini-swipe-track.dragging { transition: none; cursor: grabbing; }
+  .mini-card { flex: 0 0 calc(33.333% - 12px); background: #fff; border: 1px solid #E2E6EF; border-radius: 10px; padding: 18px; cursor: pointer; transition: box-shadow 0.2s, transform 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .mini-card:hover { box-shadow: 0 6px 20px rgba(230,126,34,0.12); transform: translateY(-2px); }
+  .mini-icon { font-size: 34px; margin-bottom: 10px; }
+  .mini-title { font-family: 'Georgia', serif; font-size: 15px; font-weight: 700; color: #1A1A2E; line-height: 1.4; margin-bottom: 8px; }
+  .mini-meta { font-family: Arial, sans-serif; font-size: 12px; color: #AAB0C0; }
+
+  /* FOOTER AD */
+  .footer-ad { background: #fff; border: 1px solid #E2E6EF; border-radius: 10px; padding: 24px 32px; text-align: center; margin-bottom: 32px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,46,0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(3px); }
+  .modal-overlay.open { display: flex; }
+  .modal { background: #fff; border-radius: 12px; max-width: 600px; width: 90%; padding: 36px; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.15); max-height: 80vh; overflow-y: auto; }
+  .modal-close { position: absolute; top: 16px; right: 16px; background: #F4F6F9; border: none; color: #7A8299; font-size: 18px; cursor: pointer; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .modal-close:hover { background: #E2E6EF; color: #1A1A2E; }
+  .modal-cat { font-family: Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .modal-title { font-family: 'Georgia', serif; font-size: 22px; font-weight: 700; color: #1A1A2E; line-height: 1.3; margin-bottom: 16px; }
+  .modal-body { font-family: Arial, sans-serif; font-size: 15px; color: #5A6170; line-height: 1.8; }
+  .modal-meta { font-family: Arial, sans-serif; font-size: 12px; color: #AAB0C0; margin-top: 16px; border-top: 1px solid #E2E6EF; padding-top: 12px; }
+
+  footer { background: #fff; border-top: 2px solid #E2E6EF; padding: 24px 32px; text-align: center; font-family: Arial, sans-serif; font-size: 12px; color: #AAB0C0; }
+  footer a { color: #7A8299; text-decoration: none; }
+  footer a:hover { color: #E67E22; }
+
+  @media(max-width:900px){
+    .swipe-card { grid-template-columns: 1fr; min-height: auto; }
+    .swipe-card-emoji { height: 180px; border-radius: 0; font-size: 70px; }
+    .swipe-card-left { padding: 20px; }
+    .swipe-title { font-size: 20px; }
+    .mini-card { flex: 0 0 calc(50% - 9px); }
+    .footer-ad { grid-template-columns: 1fr; }
+    main { padding: 16px; }
+    header { padding: 12px 16px; }
+    .logo { font-size: 30px; }
+    nav { padding: 0 12px; }
+    .swipe-prev { left: -10px; }
+    .swipe-next { right: -10px; }
+  }
+  @media(max-width:580px){
+    .mini-card { flex: 0 0 calc(85% - 9px); }
+    .swipe-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BREAKING TICKER -->
+<div class="ticker-bar">
+  <span class="ticker-label">⚡ Breaking</span>
+  <span class="ticker-content" id="ticker-text">Caricamento notizie...</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo"><span class="gs">GS</span> <span class="news">News</span></div>
+  <div class="header-right">
+    <div class="header-date-big" id="current-date"></div>
+    <div class="header-time" id="current-time"></div>
+    <div class="header-tagline">Aggiornamento automatico ogni 30 min · AI Powered</div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <button class="nav-btn active" onclick="setActiveNav(this); renderCurrent()">Tutto</button>
+  <button class="nav-btn" onclick="setActiveNav(this); showCategory('politica')">🏛️ Politica</button>
+  <button class="nav-btn" onclick="setActiveNav(this); showCategory('economia')">📈 Economia</button>
+  <button class="nav-btn" onclick="setActiveNav(this); showCategory('esteri')">🌍 Esteri</button>
+  <button class="nav-btn" onclick="setActiveNav(this); showCategory('sport')">⚽ Sport</button>
+  <button class="nav-btn" onclick="setActiveNav(this); showCategory('tech')">💻 Tech</button>
+  <button class="nav-btn" onclick="setActiveNav(this); showCategory('cronaca')">📰 Cronaca</button>
+  <button class="nav-btn" onclick="setActiveNav(this); showCategory('cultura')">🎭 Cultura</button>
+</nav>
+
+<main>
+  <!-- TOP AD -->
+  <div class="ad-banner">
+    <span class="ad-label">Pubblicità</span>
+    <div class="ad-content">🏦 Conto Corrente Zero Spese</div>
+    <div class="ad-sub">Apri oggi e ricevi €50 di bonus benvenuto — Offerta limitata</div>
+    <a href="#" class="ad-cta">Scopri di più →</a>
+  </div>
+
+  <!-- STATUS -->
+  <div class="refresh-bar">
+    <div class="refresh-text">
+      <span class="live-dot"></span>
+      <span id="status-text">Connessione in corso...</span>
+    </div>
+    <button class="refresh-btn" onclick="loadNews()">↻ Aggiorna</button>
+  </div>
+
+  <!-- PRIME NOTIZIE — SWIPE CAROUSEL -->
+  <div class="section-heading">
+    <span>🔥 Prime Notizie</span>
+    <span class="swipe-hint">← scorri →</span>
+  </div>
+  <div class="swipe-wrapper">
+    <button class="swipe-arrow swipe-prev" onclick="moveMain(-1)">‹</button>
+    <div class="swipe-track-outer">
+      <div class="swipe-track" id="main-track">
+        <!-- cards injected by JS -->
+        <div class="swipe-card">
+          <div class="swipe-card-left">
+            <span class="cat-badge cat-politica">Caricamento</span>
+            <div class="swipe-title">Recupero le notizie del giorno...</div>
+            <div class="swipe-summary">Le notizie vengono aggiornate automaticamente ogni 30 minuti tramite intelligenza artificiale.</div>
+            <div class="swipe-meta">🕐 Adesso · <span>GS News</span></div>
+          </div>
+          <div class="swipe-card-emoji">⏳</div>
+        </div>
+      </div>
+    </div>
+    <button class="swipe-arrow swipe-next" onclick="moveMain(1)">›</button>
+    <div class="swipe-dots" id="main-dots"></div>
+  </div>
+
+  <!-- ECONOMIA SWIPE -->
+  <div class="section-heading">
+    <span>📊 Economia & Finanza</span>
+    <span class="swipe-hint">← scorri →</span>
+  </div>
+  <div class="mini-swipe-wrapper">
+    <div class="mini-swipe-outer">
+      <div class="mini-swipe-track" id="eco-track">
+        <div class="mini-card"><div class="mini-icon">⏳</div><div class="mini-title">Caricamento...</div></div>
+        <div class="mini-card"><div class="mini-icon">⏳</div><div class="mini-title">Caricamento...</div></div>
+        <div class="mini-card"><div class="mini-icon">⏳</div><div class="mini-title">Caricamento...</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER AD -->
+  <div class="footer-ad">
+    <div>
+      <div style="font-family:Arial,sans-serif;font-size:10px;color:#AAB0C0;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px">Pubblicità</div>
+      <div style="font-family:Arial,sans-serif;font-size:20px;font-weight:700;color:#1A1A2E">Immobiliare.it</div>
+      <div style="font-family:Arial,sans-serif;font-size:13px;color:#7A8299;margin-top:4px">Trova casa in tutta Italia</div>
+    </div>
+    <div style="font-size:52px">🏠</div>
+    <div>
+      <div style="font-family:Arial,sans-serif;font-size:16px;color:#E67E22;font-weight:700">100.000+ annunci</div>
+      <div style="font-family:Arial,sans-serif;font-size:13px;color:#7A8299;margin:6px 0 12px">Vendita · Affitto · Nuove costruzioni</div>
+      <a href="#" class="ad-cta">Cerca ora</a>
+    </div>
+  </div>
+
+  <!-- SPORT & TECH SWIPE -->
+  <div class="section-heading">
+    <span>⚽ Sport & Tech</span>
+    <span class="swipe-hint">← scorri →</span>
+  </div>
+  <div class="mini-swipe-wrapper">
+    <div class="mini-swipe-outer">
+      <div class="mini-swipe-track" id="sport-track">
+        <div class="mini-card"><div class="mini-icon">⏳</div><div class="mini-title">Caricamento...</div></div>
+        <div class="mini-card"><div class="mini-icon">⏳</div><div class="mini-title">Caricamento...</div></div>
+        <div class="mini-card"><div class="mini-icon">⏳</div><div class="mini-title">Caricamento...</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-cat cat-badge" id="modal-cat"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-meta" id="modal-meta"></div>
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px"><strong style="color:#E67E22;font-size:15px">GS</strong><strong style="font-size:15px"> News</strong> — Notizie aggiornate automaticamente ogni 30 minuti con intelligenza artificiale</div>
+  <div style="margin-bottom:12px;font-size:11px;color:#DDE0E8;letter-spacing:1px;text-transform:uppercase">— Spazio Pubblicitario —</div>
+  <div><a href="#">Privacy Policy</a> · <a href="#">Cookie Policy</a> · <a href="#">Contatti</a> · <a href="#">Pubblicità</a></div>
+  <div style="margin-top:10px;font-size:11px;color:#C0C8D8">© 2026 GS News · Tutti i diritti riservati</div>
+  <div style="margin-top:12px;font-size:11px;color:#C0C8D8;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6;border-top:1px solid #E2E6EF;padding-top:12px">⚠️ Le notizie pubblicate su GS News sono elaborate automaticamente da intelligenza artificiale sulla base di fonti pubbliche. GS News non è una testata giornalistica registrata e non è responsabile di eventuali imprecisioni nei contenuti generati. Si consiglia di verificare le informazioni presso fonti ufficiali.</div>
+</footer>
+
+<script>
+  // ── DATE / TIME ──────────────────────────────────────────────
+  const GIORNI=['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'];
+  const MESI=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  function fmtDate(){ const d=new Date(); return `${GIORNI[d.getDay()]} ${d.getDate()} ${MESI[d.getMonth()]} ${d.getFullYear()}`; }
+  function fmtTime(){ const d=new Date(); return `Ore ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`; }
+  document.getElementById('current-date').textContent=fmtDate();
+  document.getElementById('current-time').textContent=fmtTime();
+  setInterval(()=>{ document.getElementById('current-time').textContent=fmtTime(); },30000);
+
+  // ── STATE ────────────────────────────────────────────────────
+  let currentNews=null;
+  let mainIdx=0;
+  let mainTotal=0;
+
+  // ── UTILS ────────────────────────────────────────────────────
+  function catClass(cat){ const m={politica:'cat-politica',economia:'cat-economia',esteri:'cat-esteri',sport:'cat-sport',tech:'cat-tech',cronaca:'cat-cronaca',cultura:'cat-cultura'}; return m[(cat||'').toLowerCase()]||'cat-politica'; }
+  function setActiveNav(btn){ document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
+  function setStatus(msg){ document.getElementById('status-text').innerHTML=`<span class="live-dot"></span> ${msg}`; }
+
+  // ── MODAL ────────────────────────────────────────────────────
+  function openModal(cat,titolo,sommario,ora){
+    document.getElementById('modal-cat').textContent=(cat||'news').toUpperCase();
+    document.getElementById('modal-cat').className=`modal-cat cat-badge ${catClass(cat)}`;
+    document.getElementById('modal-title').textContent=titolo;
+    document.getElementById('modal-body').textContent=sommario||'Nessun dettaglio disponibile.';
+    document.getElementById('modal-meta').innerHTML=`🕐 ${ora||'Oggi'} &nbsp;·&nbsp; <span style="color:#E67E22;font-weight:600">GS News</span>`;
+    document.getElementById('modal').classList.add('open');
+  }
+  function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+  // ── MAIN CAROUSEL ────────────────────────────────────────────
+  function buildMainCarousel(articles){
+    const track=document.getElementById('main-track');
+    const dotsEl=document.getElementById('main-dots');
+    mainTotal=articles.length;
+    mainIdx=0;
+
+    track.innerHTML=articles.map((a,i)=>`
+      <div class="swipe-card">
+        <div class="swipe-card-left">
+          <span class="cat-badge ${catClass(a.categoria)}">${(a.categoria||'NEWS').toUpperCase()}</span>
+          <div class="swipe-title">${a.titolo}</div>
+          <div class="swipe-summary">${a.sommario||''}</div>
+          <div class="swipe-meta">🕐 ${a.ora||'Oggi'} · <span>GS News</span></div>
+          <button class="read-more-btn" onclick="openModal('${a.categoria}','${a.titolo.replace(/'/g,"\\'")}','${(a.sommario||'').replace(/'/g,"\\'")}','${a.ora||''}')">Leggi di più →</button>
+        </div>
+        <div class="swipe-card-emoji">${a.emoji||'📰'}</div>
+      </div>`).join('');
+
+    dotsEl.innerHTML=articles.map((_,i)=>`<button class="dot${i===0?' active':''}" onclick="goMain(${i})"></button>`).join('');
+    setMainPos(0);
+    setupSwipe('main-track', ()=>mainIdx, (i)=>goMain(i), ()=>mainTotal);
+  }
+
+  function setMainPos(i){
+    document.getElementById('main-track').style.transform=`translateX(-${i*100}%)`;
+    document.querySelectorAll('#main-dots .dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+    mainIdx=i;
+  }
+  function goMain(i){ i=Math.max(0,Math.min(mainTotal-1,i)); setMainPos(i); }
+  function moveMain(dir){ goMain(mainIdx+dir); }
+
+  // Auto-advance every 6s
+  setInterval(()=>{ if(mainTotal>1) goMain((mainIdx+1)%mainTotal); },6000);
+
+  // ── MINI SWIPE ───────────────────────────────────────────────
+  function buildMiniTrack(trackId, items){
+    const track=document.getElementById(trackId);
+    track.innerHTML=items.map(item=>`
+      <div class="mini-card" onclick="openModal('','${item.titolo.replace(/'/g,"\\'")}','','${item.ora||''}')">
+        <div class="mini-icon">${item.emoji}</div>
+        <div class="mini-title">${item.titolo}</div>
+        <div class="mini-meta">🕐 ${item.ora||'Oggi'}</div>
+      </div>`).join('');
+    setupMiniSwipe(trackId);
+  }
+
+  function setupMiniSwipe(trackId){
+    const track=document.getElementById(trackId);
+    let startX=0, currentX=0, offset=0, dragging=false;
+    const cardW=()=> track.querySelector('.mini-card')?.offsetWidth+18 || 280;
+
+    function onStart(x){ startX=x; dragging=true; track.classList.add('dragging'); }
+    function onMove(x){
+      if(!dragging) return;
+      currentX=x;
+      track.style.transform=`translateX(${offset+(currentX-startX)}px)`;
+    }
+    function onEnd(){
+      if(!dragging) return;
+      dragging=false;
+      track.classList.remove('dragging');
+      const diff=currentX-startX;
+      const maxOffset=-((track.children.length-getVisible())*cardW());
+      if(diff<-50) offset=Math.max(offset-cardW(), maxOffset);
+      else if(diff>50) offset=Math.min(offset+cardW(), 0);
+      track.style.transition='transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)';
+      track.style.transform=`translateX(${offset}px)`;
+      setTimeout(()=>track.style.transition='',400);
+    }
+    function getVisible(){ return window.innerWidth<580?1:window.innerWidth<900?2:3; }
+
+    track.addEventListener('mousedown',e=>onStart(e.clientX));
+    track.addEventListener('mousemove',e=>onMove(e.clientX));
+    track.addEventListener('mouseup',onEnd);
+    track.addEventListener('mouseleave',onEnd);
+    track.addEventListener('touchstart',e=>onStart(e.touches[0].clientX),{passive:true});
+    track.addEventListener('touchmove',e=>onMove(e.touches[0].clientX),{passive:true});
+    track.addEventListener('touchend',onEnd);
+  }
+
+  // ── MAIN SWIPE DRAG ─────────────────────────────────────────
+  function setupSwipe(trackId, getIdx, goFn, getTotal){
+    const track=document.getElementById(trackId);
+    let startX=0, dragging=false;
+    track.addEventListener('mousedown',e=>{startX=e.clientX;dragging=true;track.classList.add('dragging');});
+    track.addEventListener('mouseup',e=>{ if(!dragging)return; dragging=false; track.classList.remove('dragging'); const diff=e.clientX-startX; if(diff<-50) goFn(getIdx()+1); else if(diff>50) goFn(getIdx()-1); });
+    track.addEventListener('mouseleave',()=>{ dragging=false; track.classList.remove('dragging'); });
+    track.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+    track.addEventListener('touchend',e=>{ const diff=e.changedTouches[0].clientX-startX; if(diff<-50) goFn(getIdx()+1); else if(diff>50) goFn(getIdx()-1); },{passive:true});
+  }
+
+  // ── RENDER ───────────────────────────────────────────────────
+  function renderNews(d){
+    if(!d) return;
+    currentNews=d;
+
+    if(d.ticker&&d.ticker.length)
+      document.getElementById('ticker-text').textContent=d.ticker.join('  ·  ');
+
+    // Build main carousel: hero + evidenza
+    const mainArticles=[];
+    if(d.hero) mainArticles.push(d.hero);
+    if(d.evidenza) mainArticles.push(...d.evidenza);
+    if(mainArticles.length) buildMainCarousel(mainArticles);
+
+    if(d.economia) buildMiniTrack('eco-track', d.economia);
+    if(d.sport_tech) buildMiniTrack('sport-track', d.sport_tech);
+
+    const upd=d.lastUpdate?new Date(d.lastUpdate).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}):fmtTime().replace('Ore ','');
+    setStatus(`Aggiornato alle ${upd} · prossimo aggiornamento tra 30 min`);
+  }
+
+  function renderCurrent(){ if(currentNews) renderNews(currentNews); }
+  function showCategory(cat){
+    if(!currentNews) return;
+    const filtered={
+      ...currentNews,
+      hero: currentNews.evidenza?.find(e=>e.categoria===cat)||currentNews.hero,
+      evidenza: currentNews.evidenza?.filter(e=>e.categoria===cat)||[]
+    };
+    renderNews(filtered);
+  }
+
+  // ── FETCH ────────────────────────────────────────────────────
+  async function loadNews(){
+    setStatus('Caricamento in corso...');
+    try {
+      const resp=await fetch('/.netlify/functions/get-news');
+      if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const data=await resp.json();
+      if(data.error) throw new Error(data.error);
+      renderNews(data);
+    } catch(err){
+      console.error(err);
+      setStatus('⚠ Errore caricamento · Riprova tra poco');
+    }
+  }
+
+  loadNews();
+  setInterval(loadNews, 30*60*1000); // ogni 30 minuti
+</script>
+</body>
+</html>
