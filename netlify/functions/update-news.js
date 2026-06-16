@@ -1,33 +1,35 @@
 // netlify/functions/update-news.js
 // Funzione schedulata: si esegue ogni ora automaticamente
-// Richiede variabile d'ambiente: ANTHROPIC_API_KEY
-
-const { getStore } = require("@netlify/blobs");
+// Richiede variabili d'ambiente: ANTHROPIC_API_KEY, GITHUB_TOKEN, GITHUB_REPO (es. "tuonome/gs-news")
 
 exports.handler = async function(event, context) {
-  console.log("🔄 Avvio aggiornamento notizie:", new Date().toISOString());
+  console.log("Avvio aggiornamento notizie:", new Date().toISOString());
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
+  const githubToken = process.env.GITHUB_TOKEN;
+  const githubRepo = process.env.GITHUB_REPO; // formato: "utente/repo"
+
   if (!apiKey) {
-    console.error("❌ ANTHROPIC_API_KEY non configurata");
-    return { statusCode: 500, body: "API key mancante" };
+    return { statusCode: 500, body: JSON.stringify({ error: "ANTHROPIC_API_KEY mancante" }) };
+  }
+  if (!githubToken || !githubRepo) {
+    return { statusCode: 500, body: JSON.stringify({ error: "GITHUB_TOKEN o GITHUB_REPO mancanti" }) };
   }
 
   const today = new Date().toLocaleDateString("it-IT", {
     day: "numeric", month: "long", year: "numeric"
   });
 
-  const prompt = `Oggi è ${today}. Cerca le notizie più importanti italiane e internazionali di oggi.
+  const prompt = `Oggi e ${today}. Cerca le notizie piu importanti italiane e internazionali di oggi.
 
 LINEE GUIDA EDITORIALI OBBLIGATORIE:
 - Scrivi in modo IMPARZIALE: nessun giudizio, nessuna opinione, nessun tono di parte
 - Usa solo FATTI verificati e fonti autorevoli (ANSA, Reuters, AP, Corriere, Repubblica, TG1, ecc.)
 - Titoli DESCRITTIVI e neutri: mai titoli sensazionalistici, clickbait o emotivi
-- Sommari CHIARI e PRECISI: chi, cosa, quando, dove, perché — senza interpretazioni
+- Sommari CHIARI e PRECISI: chi, cosa, quando, dove, perche senza interpretazioni
 - Se una notizia riguarda politica o temi divisivi, presenta i fatti senza favorire nessuno schieramento
-- Evita aggettivi valutativi (es. "devastante", "incredibile", "scandaloso")
+- Evita aggettivi valutativi
 - In caso di eventi controversi, riporta le posizioni di entrambe le parti in modo equilibrato
-- Preferisci notizie con impatto reale sulla vita delle persone
 
 Rispondi SOLO con JSON valido (niente markdown, niente backtick), struttura esatta:
 {
@@ -36,7 +38,7 @@ Rispondi SOLO con JSON valido (niente markdown, niente backtick), struttura esat
     "emoji": "emoji appropriata",
     "categoria": "politica|economia|esteri|sport|tech|cronaca|cultura",
     "titolo": "titolo neutro e descrittivo (max 12 parole)",
-    "sommario": "riassunto factual in 2-3 frasi: chi ha fatto cosa, quando, dove e perché. Nessuna opinione.",
+    "sommario": "riassunto factual in 2-3 frasi: chi ha fatto cosa, quando, dove e perche. Nessuna opinione.",
     "ora": "fa X ore"
   },
   "evidenza": [
@@ -75,7 +77,8 @@ Usa notizie REALI di oggi. Categorie variate. Solo JSON, nient'altro.`;
     });
 
     if (!response.ok) {
-      throw new Error(`Anthropic API error: ${response.status}`);
+      const errText = await response.text();
+      throw new Error(`Anthropic API error: ${response.status} - ${errText}`);
     }
 
     const data = await response.json();
@@ -86,23 +89,61 @@ Usa notizie REALI di oggi. Categorie variate. Solo JSON, nient'altro.`;
 
     const cleaned = fullText.replace(/```json|```/g, "").trim();
     const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error("Nessun JSON trovato nella risposta");
+    if (!jsonMatch) throw new Error("Nessun JSON trovato nella risposta di Anthropic");
 
     const newsData = JSON.parse(jsonMatch[0]);
     newsData.lastUpdate = new Date().toISOString();
 
-    // 2. Salva su Netlify Blobs (storage persistente)
-    const store = getStore("news");
-    await store.set("latest", JSON.stringify(newsData));
+    // 2. Scrive il file news.json direttamente su GitHub via API
+    const githubApiUrl = `https://api.github.com/repos/${githubRepo}/contents/news.json`;
 
-    console.log("✅ Notizie aggiornate con successo:", newsData.hero?.titolo);
+    // Recupera lo SHA del file esistente (richiesto da GitHub per aggiornare)
+    const getResp = await fetch(githubApiUrl, {
+      headers: {
+        "Authorization": `Bearer ${githubToken}`,
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "gs-news-bot"
+      }
+    });
+
+    if (!getResp.ok) {
+      const errText = await getResp.text();
+      throw new Error(`GitHub GET error: ${getResp.status} - ${errText}`);
+    }
+
+    const fileInfo = await getResp.json();
+    const sha = fileInfo.sha;
+
+    const contentEncoded = Buffer.from(JSON.stringify(newsData, null, 2)).toString("base64");
+
+    const putResp = await fetch(githubApiUrl, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${githubToken}`,
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json",
+        "User-Agent": "gs-news-bot"
+      },
+      body: JSON.stringify({
+        message: `Aggiornamento automatico notizie - ${new Date().toISOString()}`,
+        content: contentEncoded,
+        sha: sha
+      })
+    });
+
+    if (!putResp.ok) {
+      const errText = await putResp.text();
+      throw new Error(`GitHub PUT error: ${putResp.status} - ${errText}`);
+    }
+
+    console.log("Notizie aggiornate e salvate su GitHub:", newsData.hero && newsData.hero.titolo);
     return {
       statusCode: 200,
-      body: JSON.stringify({ success: true, updated: newsData.lastUpdate })
+      body: JSON.stringify({ success: true, updated: newsData.lastUpdate, titolo: newsData.hero && newsData.hero.titolo })
     };
 
   } catch (err) {
-    console.error("❌ Errore aggiornamento:", err.message);
+    console.error("Errore aggiornamento:", err.message);
     return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
   }
 };
