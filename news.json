@@ -1,71 +1,71 @@
 {
   "ticker": [
-    "Cardinale Ruini scomparso a 95 anni",
-    "FED mantiene tassi invariati, debutto Warsh",
-    "Mondiali 2026: Argentina e Portogallo in campo",
-    "Prima ondata di calore estiva in Italia",
-    "Accordo Usa-Iran firmato venerdì a Lucerna"
+    "Accorso Usa-Iran alla firma a Lucerna",
+    "Cardinale Ruini muore a 95 anni",
+    "Mondiali 2026: esordio Portogallo e Inghilterra",
+    "Ondata di calore in Italia con bollini gialli",
+    "FED mantiene i tassi invariati con Warsh"
   ],
   "hero": {
-    "emoji": "⚰️",
-    "categoria": "cultura",
-    "titolo": "Muore cardinale Camillo Ruini, figura eminente della Chiesa",
-    "sommario": "È deceduto a 95 anni il cardinale Camillo Ruini, per sedici anni alla guida della Conferenza episcopale italiana dal 1991. Considerato una figura eminente nella storia della Chiesa cattolica, è stato vicario per il Papa di Roma e punti di riferimento dei conservatori, vicino a Giovanni Paolo II ed elettore di Benedetto XVI.",
+    "emoji": "🤝",
+    "categoria": "esteri",
+    "titolo": "Accordo Usa-Iran sarà firmato venerdì a Lucerna",
+    "sommario": "Gli Stati Uniti e l'Iran sottoscriveranno l'accordo sulla questione nucleare venerdì a Lucerna secondo fonti diplomatiche. I leader del G7 hanno espresso apprezzamento per l'accordo, ritenendo che offra un'opportunità storica per impedire all'Iran di acquisire armi nucleari. Il testo del memorandum è stato pubblicato da agenzie di stampa internazionali.",
     "ora": "fa 6 ore"
   },
   "evidenza": [
     {
-      "emoji": "🌡️",
+      "emoji": "⛪",
       "categoria": "cronaca",
-      "titolo": "Italia nella morsa del caldo estivo, bollini gialli in nove città",
+      "titolo": "È morto il cardinale Camillo Ruini, eminente figura della Chiesa",
       "ora": "fa 6 ore"
     },
     {
-      "emoji": "🏦",
-      "categoria": "economia",
-      "titolo": "FED annuncia tassi invariati al 3,5-3,75%, prima riunione Warsh",
-      "ora": "fa 3 ore"
+      "emoji": "🌡️",
+      "categoria": "cronaca",
+      "titolo": "Ondata di calore colpisce Italia, bollini gialli in 9 città",
+      "ora": "fa 6 ore"
     },
     {
-      "emoji": "🤝",
-      "categoria": "esteri",
-      "titolo": "G7 approva accordo Usa-Iran su nucleare, firma venerdì a Lucerna",
+      "emoji": "⚖️",
+      "categoria": "politica",
+      "titolo": "Decreto rimpatri volontari assistiti diventa legge dal 2026",
       "ora": "fa 6 ore"
     }
   ],
   "economia": [
     {
+      "emoji": "💹",
+      "titolo": "FED mantiene tassi invariati tra 3,50% e 3,75%, Kevin Warsh al debutto",
+      "ora": "fa 6 ore"
+    },
+    {
       "emoji": "📊",
-      "titolo": "Borsa Italiana cauta, FTSEMib in calo dello 0,06% alle 9:17",
+      "titolo": "Borsa Italiana: FTSEMib cala dello 0,06%, spread Btp-Bund sotto 70 punti",
       "ora": "fa 4 ore"
     },
     {
       "emoji": "💶",
-      "titolo": "Spread Btp-Bund sotto 70 punti, rendimento decennale scende sotto 3,65%",
-      "ora": "fa 4 ore"
-    },
-    {
-      "emoji": "⚫",
-      "titolo": "Greggio a 75 dollari barile, ENI in flessione dell'1,84% a inizio seduta",
+      "titolo": "Euro sale oltre 1,16 dollari, Bitcoin scende sotto 66.000 dollari",
       "ora": "fa 4 ore"
     }
   ],
   "sport_tech": [
     {
       "emoji": "⚽",
-      "titolo": "Mondiali 2026: Argentina e Portogallo in campo, Inghilterra-Croazia stasera",
+      "titolo": "Mondiali 2026: Portogallo-RD Congo alle 19, Inghilterra-Croazia alle 22",
       "ora": "fa 3 ore"
     },
     {
       "emoji": "🏆",
-      "titolo": "Norvegia di Haaland favorita contro Iraq al debutto, Cannavaro con Uzbekistan",
+      "titolo": "Argentina di Messi affronta Algeria alle 3 di notte nella fase a gironi",
       "ora": "fa 4 ore"
     },
     {
-      "emoji": "🤖",
-      "titolo": "Android 17 disponibile sui Pixel, Google lancia simulatore volo gratuito",
-      "ora": "fa 13 ore"
+      "emoji": "⚽",
+      "titolo": "Cannavaro debutta come allenatore Uzbekistan contro Colombia alle 4",
+      "ora": "fa 4 ore"
     }
   ],
-  "lastUpdate": "2026-06-17T11:24:02.636Z"
+  "lastUpdate": "2026-06-17T11:24:17.837Z"
 }
