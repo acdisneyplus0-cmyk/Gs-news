@@ -1,71 +1,71 @@
 {
   "ticker": [
-    "Accordo Usa-Iran: firma venerdì a Lucerna",
-    "Milan: Ruben Amorim nuovo allenatore",
-    "FTSE Italia All Share: +1,07%",
-    "Francia-Senegal stasera ai Mondiali 2026",
-    "Caritas: record assistiti in Italia"
+    "Cardinale Ruini scomparso a 95 anni",
+    "FED mantiene tassi invariati, debutto Warsh",
+    "Mondiali 2026: Argentina e Portogallo in campo",
+    "Prima ondata di calore estiva in Italia",
+    "Accordo Usa-Iran firmato venerdì a Lucerna"
   ],
   "hero": {
-    "emoji": "🕊️",
-    "categoria": "esteri",
-    "titolo": "Accordo provvisorio Usa-Iran raggiunto",
-    "sommario": "Gli Stati Uniti e l'Iran hanno raggiunto un accordo provvisorio annunciato a Evian. La firma dell'accordo è fissata per venerdì a Lucerna. Seguiranno 60 giorni di negoziati su questioni critiche, tra cui il programma nucleare iraniano.",
-    "ora": "fa 8 ore"
+    "emoji": "⚰️",
+    "categoria": "cultura",
+    "titolo": "Muore cardinale Camillo Ruini, figura eminente della Chiesa",
+    "sommario": "È deceduto a 95 anni il cardinale Camillo Ruini, per sedici anni alla guida della Conferenza episcopale italiana dal 1991. Considerato una figura eminente nella storia della Chiesa cattolica, è stato vicario per il Papa di Roma e punti di riferimento dei conservatori, vicino a Giovanni Paolo II ed elettore di Benedetto XVI.",
+    "ora": "fa 6 ore"
   },
   "evidenza": [
     {
-      "emoji": "⚽",
-      "categoria": "sport",
-      "titolo": "Mondiali 2026: esordio di Francia e Argentina",
-      "ora": "stasera"
-    },
-    {
-      "emoji": "🇮🇹",
-      "categoria": "politica",
-      "titolo": "G7 a Evian: focus sull'Ucraina e Medio Oriente",
+      "emoji": "🌡️",
+      "categoria": "cronaca",
+      "titolo": "Italia nella morsa del caldo estivo, bollini gialli in nove città",
       "ora": "fa 6 ore"
     },
     {
-      "emoji": "⚠️",
-      "categoria": "cronaca",
-      "titolo": "Caritas: 282mila assistiti in Italia, +48% in dieci anni",
+      "emoji": "🏦",
+      "categoria": "economia",
+      "titolo": "FED annuncia tassi invariati al 3,5-3,75%, prima riunione Warsh",
+      "ora": "fa 3 ore"
+    },
+    {
+      "emoji": "🤝",
+      "categoria": "esteri",
+      "titolo": "G7 approva accordo Usa-Iran su nucleare, firma venerdì a Lucerna",
       "ora": "fa 6 ore"
     }
   ],
   "economia": [
     {
-      "emoji": "📈",
-      "titolo": "Borsa italiana: FTSE Italia All Share guadagna 1,07%",
-      "ora": "chiusura seduta"
+      "emoji": "📊",
+      "titolo": "Borsa Italiana cauta, FTSEMib in calo dello 0,06% alle 9:17",
+      "ora": "fa 4 ore"
     },
     {
-      "emoji": "🏦",
-      "titolo": "UniCredit e IntesaSanpaolo positive: +4,17% e +2,91%",
-      "ora": "fine seduta"
+      "emoji": "💶",
+      "titolo": "Spread Btp-Bund sotto 70 punti, rendimento decennale scende sotto 3,65%",
+      "ora": "fa 4 ore"
     },
     {
-      "emoji": "💰",
-      "titolo": "Spread Btp-Bund stabile a 72 punti base",
-      "ora": "apertura 16 giugno"
+      "emoji": "⚫",
+      "titolo": "Greggio a 75 dollari barile, ENI in flessione dell'1,84% a inizio seduta",
+      "ora": "fa 4 ore"
     }
   ],
   "sport_tech": [
     {
       "emoji": "⚽",
-      "titolo": "Francia affronta Senegal ore 21 su Rai 1 ai Mondiali",
-      "ora": "stasera"
+      "titolo": "Mondiali 2026: Argentina e Portogallo in campo, Inghilterra-Croazia stasera",
+      "ora": "fa 3 ore"
     },
     {
-      "emoji": "🔴",
-      "titolo": "Milan: ufficiale Ruben Amorim nuovo allenatore",
-      "ora": "fa 34 minuti"
+      "emoji": "🏆",
+      "titolo": "Norvegia di Haaland favorita contro Iraq al debutto, Cannavaro con Uzbekistan",
+      "ora": "fa 4 ore"
     },
     {
-      "emoji": "🎮",
-      "titolo": "Roma: evento Next Sport Generation con e-sports e innovazione",
-      "ora": "ore 18:00"
+      "emoji": "🤖",
+      "titolo": "Android 17 disponibile sui Pixel, Google lancia simulatore volo gratuito",
+      "ora": "fa 13 ore"
     }
   ],
-  "lastUpdate": "2026-06-16T21:51:15.059Z"
+  "lastUpdate": "2026-06-17T11:24:02.636Z"
 }
