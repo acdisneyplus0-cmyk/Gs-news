@@ -1,71 +1,71 @@
 {
   "ticker": [
-    "Accorso Usa-Iran alla firma a Lucerna",
     "Cardinale Ruini muore a 95 anni",
-    "Mondiali 2026: esordio Portogallo e Inghilterra",
-    "Ondata di calore in Italia con bollini gialli",
-    "FED mantiene i tassi invariati con Warsh"
+    "Accordo USA-Iran firmato a Lucerna venerdì",
+    "Mondiali 2026: giornata 7 con Portogallo e Inghilterra",
+    "Maturità 2026 inizia giovedì con 500mila studenti",
+    "Fed di Warsh decide sui tassi oggi"
   ],
   "hero": {
-    "emoji": "🤝",
-    "categoria": "esteri",
-    "titolo": "Accordo Usa-Iran sarà firmato venerdì a Lucerna",
-    "sommario": "Gli Stati Uniti e l'Iran sottoscriveranno l'accordo sulla questione nucleare venerdì a Lucerna secondo fonti diplomatiche. I leader del G7 hanno espresso apprezzamento per l'accordo, ritenendo che offra un'opportunità storica per impedire all'Iran di acquisire armi nucleari. Il testo del memorandum è stato pubblicato da agenzie di stampa internazionali.",
-    "ora": "fa 6 ore"
+    "emoji": "⚫",
+    "categoria": "cronaca",
+    "titolo": "Morto cardinale Camillo Ruini a 95 anni",
+    "sommario": "È scomparso il cardinale Camillo Ruini, figura eminente della Chiesa italiana. Guidò la Conferenza episcopale italiana dal 1991 per sedici anni ed è stato anche Vicario della Chiesa di Roma. Considerato eminenza grigia della politica italiana nel passato.",
+    "ora": "fa 3 ore"
   },
   "evidenza": [
     {
-      "emoji": "⛪",
-      "categoria": "cronaca",
-      "titolo": "È morto il cardinale Camillo Ruini, eminente figura della Chiesa",
-      "ora": "fa 6 ore"
+      "emoji": "🌍",
+      "categoria": "esteri",
+      "titolo": "Accordo USA-Iran sarà firmato venerdì a Lucerna",
+      "ora": "fa 2 ore"
     },
     {
       "emoji": "🌡️",
       "categoria": "cronaca",
-      "titolo": "Ondata di calore colpisce Italia, bollini gialli in 9 città",
-      "ora": "fa 6 ore"
+      "titolo": "Ondata di calore in Italia: 9 città con bollino giallo oggi",
+      "ora": "fa 3 ore"
     },
     {
-      "emoji": "⚖️",
+      "emoji": "🏛️",
       "categoria": "politica",
-      "titolo": "Decreto rimpatri volontari assistiti diventa legge dal 2026",
-      "ora": "fa 6 ore"
+      "titolo": "Decreto rimpatri volontari assistiti diventa legge",
+      "ora": "fa 3 ore"
     }
   ],
   "economia": [
     {
-      "emoji": "💹",
-      "titolo": "FED mantiene tassi invariati tra 3,50% e 3,75%, Kevin Warsh al debutto",
-      "ora": "fa 6 ore"
-    },
-    {
       "emoji": "📊",
-      "titolo": "Borsa Italiana: FTSEMib cala dello 0,06%, spread Btp-Bund sotto 70 punti",
+      "titolo": "Fed di Warsh decide su tassi: FTSEMib in calo dello 0,06%",
       "ora": "fa 4 ore"
     },
     {
-      "emoji": "💶",
-      "titolo": "Euro sale oltre 1,16 dollari, Bitcoin scende sotto 66.000 dollari",
+      "emoji": "💰",
+      "titolo": "Bond Campari Group quotato su EuroTLX con scadenza giugno 2033",
+      "ora": "fa 4 ore"
+    },
+    {
+      "emoji": "💵",
+      "titolo": "Euro sale oltre 1,16 dollari, spread Btp-Bund sotto 70 punti",
       "ora": "fa 4 ore"
     }
   ],
   "sport_tech": [
     {
       "emoji": "⚽",
-      "titolo": "Mondiali 2026: Portogallo-RD Congo alle 19, Inghilterra-Croazia alle 22",
+      "titolo": "Mondiali 2026: Portogallo-Congo alle 19, Inghilterra-Croazia alle 22",
       "ora": "fa 3 ore"
     },
     {
-      "emoji": "🏆",
-      "titolo": "Argentina di Messi affronta Algeria alle 3 di notte nella fase a gironi",
-      "ora": "fa 4 ore"
+      "emoji": "📱",
+      "titolo": "Google rilascia Android 17 su Pixel con aggiornamento giugno 2026",
+      "ora": "fa 13 ore"
     },
     {
-      "emoji": "⚽",
-      "titolo": "Cannavaro debutta come allenatore Uzbekistan contro Colombia alle 4",
-      "ora": "fa 4 ore"
+      "emoji": "🎓",
+      "titolo": "Maturità 2026: mezzo milione studenti a tema italiano da giovedì",
+      "ora": "fa 1 ora"
     }
   ],
-  "lastUpdate": "2026-06-17T11:24:17.837Z"
+  "lastUpdate": "2026-06-17T11:24:31.729Z"
 }
