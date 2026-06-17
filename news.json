@@ -1,71 +1,71 @@
 {
   "ticker": [
-    "Cardinale Ruini muore a 95 anni",
-    "Accordo USA-Iran firmato a Lucerna venerdì",
-    "Mondiali 2026: giornata 7 con Portogallo e Inghilterra",
-    "Maturità 2026 inizia giovedì con 500mila studenti",
-    "Fed di Warsh decide sui tassi oggi"
+    "Mondiali 2026: giornata ricca di partite",
+    "Portogallo-Congo ore 19:00",
+    "Inghilterra-Croazia ore 22:00",
+    "Argentina esordisce",
+    "Austria-Giordania ore 06:00"
   ],
   "hero": {
-    "emoji": "⚫",
-    "categoria": "cronaca",
-    "titolo": "Morto cardinale Camillo Ruini a 95 anni",
-    "sommario": "È scomparso il cardinale Camillo Ruini, figura eminente della Chiesa italiana. Guidò la Conferenza episcopale italiana dal 1991 per sedici anni ed è stato anche Vicario della Chiesa di Roma. Considerato eminenza grigia della politica italiana nel passato.",
-    "ora": "fa 3 ore"
+    "emoji": "⚽",
+    "categoria": "sport",
+    "titolo": "Mondiali 2026, settima giornata con big match Inghilterra-Croazia",
+    "sommario": "Si disputa oggi la settima giornata della fase a gironi dei Mondiali 2026. Il match principale è Inghilterra-Croazia alle 22:00 su Rai 1. Nel programma anche Portogallo-Congo alle 19:00, Argentina-Algeria alle 03:00, Austria-Giordania alle 06:00 e altre partite.",
+    "ora": "fa poche ore"
   },
   "evidenza": [
     {
-      "emoji": "🌍",
-      "categoria": "esteri",
-      "titolo": "Accordo USA-Iran sarà firmato venerdì a Lucerna",
-      "ora": "fa 2 ore"
+      "emoji": "⚽",
+      "categoria": "sport",
+      "titolo": "Portogallo debutta contro Congo alle 19:00 italiane",
+      "ora": "oggi"
     },
     {
-      "emoji": "🌡️",
-      "categoria": "cronaca",
-      "titolo": "Ondata di calore in Italia: 9 città con bollino giallo oggi",
-      "ora": "fa 3 ore"
+      "emoji": "⚽",
+      "categoria": "sport",
+      "titolo": "Inghilterra affronta Croazia in big match alle 22:00",
+      "ora": "oggi"
     },
     {
-      "emoji": "🏛️",
-      "categoria": "politica",
-      "titolo": "Decreto rimpatri volontari assistiti diventa legge",
-      "ora": "fa 3 ore"
+      "emoji": "⚽",
+      "categoria": "sport",
+      "titolo": "Argentina di Messi esordisce alle 03:00 contro Algeria",
+      "ora": "stanotte"
     }
   ],
   "economia": [
     {
       "emoji": "📊",
-      "titolo": "Fed di Warsh decide su tassi: FTSEMib in calo dello 0,06%",
-      "ora": "fa 4 ore"
+      "titolo": "Conferenza Banca d'Italia sulla politica monetaria 18-19 giugno",
+      "ora": "domani"
     },
     {
       "emoji": "💰",
-      "titolo": "Bond Campari Group quotato su EuroTLX con scadenza giugno 2033",
-      "ora": "fa 4 ore"
+      "titolo": "BTP Italia Sì: collocamento retail dal 15 al 19 giugno 2026",
+      "ora": "in corso"
     },
     {
-      "emoji": "💵",
-      "titolo": "Euro sale oltre 1,16 dollari, spread Btp-Bund sotto 70 punti",
-      "ora": "fa 4 ore"
+      "emoji": "📈",
+      "titolo": "Spread BTP-Bund stabile a 77 punti base",
+      "ora": "giugno"
     }
   ],
   "sport_tech": [
     {
-      "emoji": "⚽",
-      "titolo": "Mondiali 2026: Portogallo-Congo alle 19, Inghilterra-Croazia alle 22",
-      "ora": "fa 3 ore"
+      "emoji": "🤖",
+      "titolo": "SpaceX acquisisce startup Cursor per 60 miliardi",
+      "ora": "ieri"
     },
     {
-      "emoji": "📱",
-      "titolo": "Google rilascia Android 17 su Pixel con aggiornamento giugno 2026",
-      "ora": "fa 13 ore"
+      "emoji": "💻",
+      "titolo": "AI infrastructure race: competizione globale per chip e data center",
+      "ora": "questa settimana"
     },
     {
-      "emoji": "🎓",
-      "titolo": "Maturità 2026: mezzo milione studenti a tema italiano da giovedì",
-      "ora": "fa 1 ora"
+      "emoji": "⚡",
+      "titolo": "Qualcomm: AI agents sostituiranno le app tradizionali",
+      "ora": "ieri"
     }
   ],
-  "lastUpdate": "2026-06-17T11:24:31.729Z"
+  "lastUpdate": "2026-06-17T11:24:34.724Z"
 }
